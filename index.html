@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cyber Slot</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      
+      <div class="slot-machine">
+        <div class="slot-frame">
+          <div class="result-display"></div>
+          <div class="slot-window">
+            <canvas id="slotCanvas"></canvas>
+          </div>
+          <div class="slot-highlight"></div>
+        </div>
+        <button id="spinButton" class="spin-button">
+          <span class="button-text">SPIN</span>
+          <div class="button-glow"></div>
+        </button>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>
