@@ -26,10 +26,17 @@ export class SlotRenderer {
     this.#setupContext();
   }
 
+  #calculateResponsiveFontSize() {
+    // 画面サイズに基づいて適切なフォントサイズを計算
+    const baseSize = Math.min(this.#canvas.width * 0.15, this.#config.display.itemHeight * 0.5);
+    return Math.max(16, Math.min(baseSize, 48));
+  }
+  
   #setupContext() {
     this.#ctx.textAlign = "center";
     this.#ctx.textBaseline = "middle";
-    this.#ctx.font = this.#config.display.font;
+    const fontSize = this.#calculateResponsiveFontSize();
+    this.#ctx.font = `${fontSize}px Arial`;
   }
 
   resize() {
@@ -86,6 +93,16 @@ export class SlotRenderer {
     const { colors } = this.#config.style;
     const gradient = this.#createGradient(y, alpha, colors);
     this.#setupShadow(alpha, colors);
+
+    const maxWidth = this.#canvas.width * 0.8; // キャンバス幅の80%を最大幅とする
+    let fontSize = this.#calculateResponsiveFontSize();
+    this.#ctx.font = `${fontSize}px Arial`;
+    
+    let textWidth = this.#ctx.measureText(text).width;
+    if (textWidth > maxWidth) {
+      fontSize *= maxWidth / textWidth;
+      this.#ctx.font = `${fontSize}px Arial`;
+    }
 
     this.#ctx.fillStyle = gradient;
     this.#ctx.fillText(text, this.#canvas.width / 2, y);
