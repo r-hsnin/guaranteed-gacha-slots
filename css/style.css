@@ -1,5 +1,4 @@
 :root {
-  /* Colors */
   --primary-dark: #0a1929;
   --primary-light: #1e3a5f;
   --accent-blue: #00a3ff;
@@ -7,12 +6,10 @@
   --highlight: #e6f7ff;
   --shadow-dark: #051525;
 
-  /* Spacing */
   --spacing-sm: 10px;
   --spacing-md: 20px;
   --spacing-lg: 30px;
 
-  /* Border Radius */
   --border-radius-sm: 5px;
   --border-radius-md: 10px;
   --border-radius-lg: 15px;
@@ -89,13 +86,21 @@ body {
   margin: var(--spacing-md) auto 0;
   margin-bottom: var(--spacing-md);
   padding: var(--spacing-sm);
+  background: rgba(0, 163, 255, 0.1);
+  border: 2px solid var(--accent-blue);
+  border-radius: var(--border-radius-sm);
   color: var(--highlight);
-  font-size: 24px;
+  font-size: 32px;
+  font-weight: bold;
   text-align: center;
+  text-shadow: 0 0 5px var(--accent-blue), 0 0 10px var(--glow-blue),
+    0 0 15px var(--accent-blue);
+  letter-spacing: 2px;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1;
+  box-shadow: 0 0 15px rgba(0, 163, 255, 0.2);
+  backdrop-filter: blur(4px);
 }
 
 .slot-window {
@@ -120,13 +125,13 @@ body {
 }
 
 .slot-window::after {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   top: 50%;
   transform: translateY(-50%);
   width: 100%;
-  height: 120px; /* アイテムの高さに合わせる */
+  height: 120px;
   background: linear-gradient(
     to bottom,
     rgba(0, 163, 255, 0.1),
@@ -137,8 +142,7 @@ body {
   pointer-events: none;
   border-top: 2px solid rgba(0, 163, 255, 0.3);
   border-bottom: 2px solid rgba(0, 163, 255, 0.3);
-  box-shadow: 
-    inset 0 0 15px rgba(0, 163, 255, 0.2),
+  box-shadow: inset 0 0 15px rgba(0, 163, 255, 0.2),
     0 0 15px rgba(0, 163, 255, 0.2);
 }
 
@@ -209,8 +213,13 @@ body {
 }
 
 @keyframes glowLine {
-  0%, 100% { opacity: 0.7; }
-  50% { opacity: 1; }
+  0%,
+  100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
 }
 
 .slot-window::after {
