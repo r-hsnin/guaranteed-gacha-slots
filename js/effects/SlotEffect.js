@@ -114,14 +114,21 @@ export class SlotEffect {
     }
     this.#isActive = false;
     this.#particles = [];
-
-    if (this.#canvas && this.#canvas.parentNode) {
-      this.#canvas.parentNode.removeChild(this.#canvas);
+    
+    if (this.#ctx) {
+      this.#ctx.clearRect(0, 0, this.#canvas.width, this.#canvas.height);
     }
   }
 
   stop() {
     this.#isActive = false;
     this.#cleanup();
+  }
+
+  destroy() {
+    this.stop();
+    if (this.#canvas && this.#canvas.parentNode) {
+      this.#canvas.parentNode.removeChild(this.#canvas);
+    }
   }
 }
